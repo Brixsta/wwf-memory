@@ -1,4 +1,6 @@
 const startButton = document.querySelector('.start-game-button');
+const mainMenuButton = document.querySelector('.main-menu-button');
+const highScoreButton = document.querySelector('.high-score-button');
 const metrics = document.querySelector('.metrics');
 const container = document.querySelector('.container');
 const board = document.querySelector('.board');
@@ -13,12 +15,30 @@ const GameStats = {
     removedCards: [],
     numberOfTurns: 0,
     cardsRemaining: 16,
+    highScores: []
 }
+
+// view highscores
+highScoreButton.addEventListener('click',()=>{
+    viewHighScores();
+});
+
+// go back to main menu
+mainMenuButton.addEventListener('click',()=>{
+    const highScoreTableContainer = document.querySelector('.high-score-table-container');
+    mainMenuButton.style.display = "none";
+    highScoreTableContainer.style.display = "none";
+
+    restoreMainMenu();
+})
 
 // start button initiates the game
 startButton.addEventListener('click', ()=>{
+    const highScoreTable = document.querySelector('.high-score-table');
+    highScoreTable.style.display = "none";
+    highScoreTable.style.backgroundColor = "red"
     theme.play();
-    console.log('starting game')
+    // document.getElementBy.style.backgroundImage = `url('./images/${evt.target.textContent}.png')`;
     startButton.style.display = "none";
     container.style.display = "block";
     metrics.style.display = "flex";
@@ -209,4 +229,83 @@ const playRandomAudioClip = () => {
 const playClickNoise = () => {
     const click = new Audio(`./audio/swoosh.mp3`);
     click.play();
+}
+
+// show high scores
+ const viewHighScores = () => {
+    const appTitle = document.querySelector('.app-title');
+    const highScoreTableContainer = document.querySelector('.high-score-table-container');
+    hideMainMenu();
+    highScoreTableContainer.style.display = "block";  
+
+    grabHighScores();
+ }
+
+ // grab scores from local storage
+const grabHighScores = ()=> {
+
+    for(let i=0; i<localStorage.length; i++) {
+        let name = window.localStorage.key(i);
+        let score = window.localStorage.getItem(localStorage.key(i));
+        GameStats.highScores.push({name: name, score: Number(score)});
+    }
+    appendScoresToTable();
+}
+
+//append scores to table
+const highScoreTable = document.querySelector('.high-score-table');
+const appendScoresToTable = () => {
+    for(let el in GameStats.highScores) {
+        let name = GameStats.highScores[el].name;
+        let score = GameStats.highScores[el].score;
+        console.log(name,score)
+
+        let newRow = document.createElement('tr');
+
+        let rankCell = document.createElement('td');
+        rankCell.classList.add('table-cell-rank');
+        rankCell.textContent = Number(el) + 1;
+
+        let nameCell = document.createElement('td');
+        nameCell.classList.add('table-cell');
+
+        let scoreCell = document.createElement('td');
+        scoreCell.classList.add('table-cell');
+        scoreCell.textContent = score;
+
+        newRow.appendChild(rankCell);
+        newRow.appendChild(nameCell);
+        newRow.appendChild(scoreCell);
+
+        nameCell.textContent = name;
+
+        highScoreTable.append(newRow);
+    }
+}
+
+// sort scores by least 
+const sortByLeastTurns = () => {
+    
+}
+
+// hide main menu 
+const hideMainMenu = ()=> {
+    const appTitle = document.querySelector('.app-title');
+    const startButton = document.querySelector('.start-game-button');
+    const highScoreButton = document.querySelector('.high-score-button');
+
+    appTitle.style.display = "none";
+    startButton.style.display = "none";
+    highScoreButton.style.display = "none";
+}
+
+// restore main menu
+const restoreMainMenu = () => {
+    const appTitle = document.querySelector('.app-title');
+    const startButton = document.querySelector('.start-game-button');
+    const highScoreButton = document.querySelector('.high-score-button');
+
+    appTitle.style.display = "flex";
+    startButton.style.display = "flex";
+    highScoreButton.style.display = "flex";
 }

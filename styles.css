@@ -19,6 +19,7 @@ html {
   display: flex;
   align-items: center;
   flex-direction: column;
+  justify-content: center;
 }
 
 .metrics {
@@ -80,6 +81,37 @@ html {
   align-items: center;
 }
 
+.app-title {
+  font-size: 4rem;
+  margin-top: -200px;
+  color: white;
+  text-shadow: 1px 1px 0px black, 2px 2px 0px black, 3px 3px 0px black,
+    4px 4px 0px black, 5px 5px 0px black, 0px 0px 10px orange;
+}
+.start-game-button,
+.high-score-button {
+  padding: 1rem;
+  font-family: "Open Sans", sans-serif;
+  font-size: 1rem;
+  cursor: pointer;
+  margin: 0.75rem;
+  width: 10rem;
+  display: flex;
+  justify-content: center;
+}
+
+.main-menu-button {
+  padding: 1rem;
+  font-family: "Open Sans", sans-serif;
+  font-size: 1rem;
+  cursor: pointer;
+  width: 12rem;
+  margin-left: 62px;
+  margin-top: 1rem;
+  border-radius: 30px;
+  border: none;
+}
+
 .card {
   height: 150px;
   width: 100px;
@@ -112,4 +144,53 @@ html {
   user-select: none;
   box-sizing: border-box;
   border: solid 2px black;
+}
+
+.high-score-table {
+  width: 20rem;
+  background-color: blue;
+  border: solid 1px black;
+  box-sizing: border-box;
+  overflow-y: auto;
+}
+
+.high-score-table-container {
+  display: none;
+  justify-content: center;
+  align-items: center;
+  background-color: orange;
+  flex-direction: column;
+  padding: 1rem;
+}
+
+.table-heading {
+  text-align: center;
+  background-color: red;
+  width: 100%;
+  padding: 0.75rem;
+}
+
+.table-cell {
+  text-align: center;
+  background-color: lightblue;
+  width: 100%;
+  padding: 0.75rem;
+}
+
+.table-rank,
+.table-cell-rank {
+  width: 20%;
+  background-color: red;
+  padding: 0.75rem;
+  text-align: center;
+}
+
+.table-cell-rank {
+  background-color: lightblue;
+}
+
+.high-score-table-title {
+  color: blue;
+  text-align: center;
+  padding: 1rem;
 }
