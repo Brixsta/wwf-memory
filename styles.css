@@ -45,7 +45,7 @@ html {
   user-select: none;
   text-align: center;
   user-select: none;
-  background-color: white;
+  background-color: whitesmoke;
   border: none;
   color: black;
   font-size: 1rem;
@@ -82,11 +82,41 @@ html {
 }
 
 .app-title {
-  font-size: 4rem;
-  margin-top: -200px;
+  font-family: "Open Sans", sans-serif;
+  font-size: 80px;
+  margin-bottom: 1rem;
+  box-sizing: border-box;
   color: white;
-  text-shadow: 1px 1px 0px black, 2px 2px 0px black, 3px 3px 0px black,
-    4px 4px 0px black, 5px 5px 0px black, 0px 0px 10px orange;
+  background-color: black;
+  padding: 1rem 2rem;
+  border-radius: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-shadow: 0px 0px 10px orange, 0px 0px 5px orange;
+  user-select: none;
+}
+
+.high-score-table-title {
+  font-family: "Open Sans", sans-serif;
+  font-size: 80px;
+  box-sizing: border-box;
+  color: white;
+  background-color: black;
+  margin-bottom: 1.4rem;
+  padding: 1rem 2rem;
+  border-radius: 60px;
+  text-shadow: 0px 0px 10px orange, 0px 0px 5px orange;
+  display: flex;
+}
+
+.logo {
+  height: 100px;
+  width: 170px;
+  display: block;
+  background-image: url("./images/logo.png");
+  background-size: cover;
+  margin: 0rem 1rem;
 }
 .start-game-button,
 .high-score-button {
@@ -94,22 +124,44 @@ html {
   font-family: "Open Sans", sans-serif;
   font-size: 1rem;
   cursor: pointer;
-  margin: 0.75rem;
+  margin: 0.5rem;
   width: 10rem;
   display: flex;
   justify-content: center;
+  background-color: black;
+  color: white;
+  border: none;
+  border-radius: 30px;
+  box-sizing: border-box;
+  border: 2px solid black;
+  transition: all 200ms ease-in;
 }
 
-.main-menu-button {
+.start-game-button:hover,
+.high-score-button:hover {
+  background-color: whitesmoke;
+  color: black;
+}
+
+.back-to-main-menu-button {
   padding: 1rem;
   font-family: "Open Sans", sans-serif;
   font-size: 1rem;
   cursor: pointer;
   width: 12rem;
-  margin-left: 62px;
   margin-top: 1rem;
   border-radius: 30px;
   border: none;
+  background-color: black;
+  color: white;
+  transition: all 200ms ease-in;
+  box-sizing: border-box;
+  border: 2px solid black;
+}
+
+.back-to-main-menu-button:hover {
+  background-color: whitesmoke;
+  color: black;
 }
 
 .card {
@@ -148,49 +200,70 @@ html {
 
 .high-score-table {
   width: 20rem;
-  background-color: blue;
-  border: solid 1px black;
-  box-sizing: border-box;
-  overflow-y: auto;
+  background-color: rgb(193, 193, 193);
+  border-collapse: collapse;
+  border: 1px solid black;
+  padding: 0px;
+  margin: 0px;
+  user-select: none;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 1);
 }
 
 .high-score-table-container {
   display: none;
   justify-content: center;
   align-items: center;
-  background-color: orange;
   flex-direction: column;
   padding: 1rem;
 }
 
+.table-row {
+  background-color: whitesmoke;
+  border: solid 1px black;
+  box-sizing: border-box;
+  color: black;
+}
+
+.table-row:hover {
+  background-color: rgb(193, 193, 193);
+}
+
 .table-heading {
   text-align: center;
-  background-color: red;
+  background-color: black;
   width: 100%;
   padding: 0.75rem;
+  color: white;
+  box-sizing: border-box;
 }
 
 .table-cell {
   text-align: center;
-  background-color: lightblue;
   width: 100%;
   padding: 0.75rem;
+  box-sizing: border-box;
 }
 
-.table-rank,
-.table-cell-rank {
-  width: 20%;
-  background-color: red;
+.table-rank {
+  background-color: black;
   padding: 0.75rem;
   text-align: center;
+  color: white;
+  box-sizing: border-box;
 }
 
 .table-cell-rank {
-  background-color: lightblue;
+  width: 20%;
+  padding: 0.75rem;
+  text-align: center;
+  box-sizing: border-box;
 }
 
-.high-score-table-title {
-  color: blue;
-  text-align: center;
-  padding: 1rem;
+.high-score-table-overflow {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  overflow-y: auto;
+  max-height: 21rem;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 1);
 }

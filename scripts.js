@@ -1,8 +1,6 @@
 const startButton = document.querySelector('.start-game-button');
-const mainMenuButton = document.querySelector('.main-menu-button');
+const backToMainMenuButton = document.querySelector('.back-to-main-menu-button');
 const highScoreButton = document.querySelector('.high-score-button');
-const metrics = document.querySelector('.metrics');
-const container = document.querySelector('.container');
 const board = document.querySelector('.board');
 const turnCounter = document.querySelector('.turn-counter');
 const cardsRemainingCounter = document.querySelector('.cards-remaining-counter');
@@ -18,32 +16,40 @@ const GameStats = {
     highScores: []
 }
 
-// view highscores
+// start button initiates the game
+startButton.addEventListener('click', ()=>{
+    theme.play();
+    hideMainMenu();
+    hideHighScores();
+    populateBoard();
+});
+
+// view highScores
 highScoreButton.addEventListener('click',()=>{
+    theme.play();
+    hideMainMenu();
     viewHighScores();
 });
 
-// go back to main menu
-mainMenuButton.addEventListener('click',()=>{
-    const highScoreTableContainer = document.querySelector('.high-score-table-container');
-    mainMenuButton.style.display = "none";
-    highScoreTableContainer.style.display = "none";
-
-    restoreMainMenu();
+// view mainMenu
+backToMainMenuButton.addEventListener('click',()=>{
+    hideHighScores();
+    viewMainMenu();
 })
 
-// start button initiates the game
-startButton.addEventListener('click', ()=>{
-    const highScoreTable = document.querySelector('.high-score-table');
-    highScoreTable.style.display = "none";
-    highScoreTable.style.backgroundColor = "red"
-    theme.play();
-    // document.getElementBy.style.backgroundImage = `url('./images/${evt.target.textContent}.png')`;
-    startButton.style.display = "none";
-    container.style.display = "block";
+// populate board
+const populateBoard = () => {
+    const metricsContainer = document.querySelector('.metrics-container');
+    const metrics = document.querySelector('.metrics');
+    const container = document.querySelector('.container');
+
     metrics.style.display = "flex";
+    metricsContainer.style.display = "flex";
+    container.style.display = "block";
+
     turnCounter.disabled = true;
     cardsRemainingCounter.disabled = true;
+
     turnCounter.value = GameStats.numberOfTurns;
     cardsRemainingCounter.value = GameStats.cardsRemaining;
 
@@ -51,7 +57,7 @@ startButton.addEventListener('click', ()=>{
     const shuffledCards = shuffleCardData(cardData);
 
     attachCardsToBoard(shuffledCards);
-});
+}
 
 // create card data
 const createCardData = () => {
@@ -90,15 +96,11 @@ const attachCardsToBoard = (arr) => {
             GameStats.selectedCards.push(Number(card.textContent));
             GameStats.selectedCardsIndex.push(currentIndex)
 
-
             card.classList.add('active');
             card.style.backgroundImage = `url('./images/${evt.target.textContent}.png')`;
 
             disableCurrentCard(cards[currentIndex]);
-            
-
             checkSelectedCards();
-
         })
         board.appendChild(card);
     }
@@ -106,6 +108,8 @@ const attachCardsToBoard = (arr) => {
 
 // check selected cards to see if they match
 const checkSelectedCards = () => {
+
+    // cards are a match
     if(GameStats.selectedCards[0] === GameStats.selectedCards[1]) {
         playRandomAudioClip();
         GameStats.numberOfTurns++;
@@ -121,7 +125,7 @@ const checkSelectedCards = () => {
         disableAllCards();
 
         setTimeout(()=>{
-            removeCards(GameStats.selectedCardsIndex)
+            hideMatchingCards(GameStats.selectedCardsIndex)
             GameStats.selectedCards = [];
             GameStats.selectedCardsIndex= [];
         },1000);
@@ -130,16 +134,15 @@ const checkSelectedCards = () => {
             enableAllCards();
         },1000)
 
+    // cards don't match
     } else if (GameStats.selectedCards.length === 2) {
         restoreCardBackgroundImg();
         GameStats.numberOfTurns++;
         turnCounter.value = GameStats.numberOfTurns.toString();
         disableAllCards();
         
-
         setTimeout(()=>{
-            
-            restoreCards(GameStats.selectedCardsIndex)
+            restoreCards()
             GameStats.selectedCards = [];
             GameStats.selectedCardsIndex= [];
         },1000)
@@ -151,7 +154,7 @@ const checkSelectedCards = () => {
 }
 
 //remove cards that match
-const removeCards = (arr) => {
+const hideMatchingCards = (arr) => {
     const cards = document.getElementsByClassName('card');
     const indexOne = arr[0];
     const indexTwo = arr[1];
@@ -164,16 +167,16 @@ const removeCards = (arr) => {
 
     cards[indexOne].disabled = true;
     cards[indexTwo].disabled = true;
+
+    checkGameIsComplete();
 }
 
 // restore cards to the default card class and remove active
-const restoreCards = (arr) => {
-    const cards = document.getElementsByClassName('card');
-    const indexOne = arr[0];
-    const indexTwo = arr[1];
-
-    cards[indexOne].classList.remove('active');
-    cards[indexTwo].classList.remove('active');
+const restoreCards = () => {
+    let cards = document.getElementsByClassName('card');
+    for(let i=0; i<cards.length; i++) {
+        cards[i].classList.remove('active');
+    }
 }
 
 // disables current card
@@ -193,6 +196,7 @@ const disableAllCards = () => {
         current.disabled = true;
     }
 }
+
 // enable all cards
 const enableAllCards = () => {
     const removedCards = GameStats.removedCards;
@@ -209,18 +213,29 @@ const enableAllCards = () => {
     }
 }
 
-// restore the background img of a card after check
+// restore the background img of all cards after check
 const restoreCardBackgroundImg = () => {
     const cards = Array.from(document.getElementsByClassName('card'));
     setTimeout(()=>{
-        cards[GameStats.selectedCardsIndex[0]].style.backgroundImage = `url('./images/card.png')`;
-        cards[GameStats.selectedCardsIndex[1]].style.backgroundImage = `url('./images/card.png')`;
+        for(let i=0; i<cards.length; i++) {
+            cards[i].style.backgroundImage = `url('./images/card.png')`;
+        }
     },1000)
+}
+
+// clean off board of all old cards from a previous game
+const removeOldCards = () => {
+    const container = document.querySelector('.container');
+    const board = document.querySelector('.board');
+    while(board.hasChildNodes()) {
+        board.removeChild(board.firstChild)
+    }
+    container.style.display = "none";
 }
 
 // play random audio clip
 const playRandomAudioClip = () => {
-    let randomNum = Math.floor(Math.random() * 13);
+    let randomNum = Math.floor(Math.random() * 14);
     const music = new Audio(`./audio/${randomNum}.mp3`);
     music.play();
 }
@@ -233,11 +248,13 @@ const playClickNoise = () => {
 
 // show high scores
  const viewHighScores = () => {
-    const appTitle = document.querySelector('.app-title');
-    const highScoreTableContainer = document.querySelector('.high-score-table-container');
-    hideMainMenu();
-    highScoreTableContainer.style.display = "block";  
 
+    const highScoreTableContainer = document.querySelector('.high-score-table-container');
+    const highScoreTable = document.querySelector('.high-score-table');
+
+    highScoreTableContainer.style.display = "flex"; 
+    highScoreTable.style.display = "block"
+     
     grabHighScores();
  }
 
@@ -249,22 +266,48 @@ const grabHighScores = ()=> {
         let score = window.localStorage.getItem(localStorage.key(i));
         GameStats.highScores.push({name: name, score: Number(score)});
     }
-    appendScoresToTable();
+
+    appendRowsToTable();
 }
 
-//append scores to table
-const highScoreTable = document.querySelector('.high-score-table');
-const appendScoresToTable = () => {
-    for(let el in GameStats.highScores) {
-        let name = GameStats.highScores[el].name;
-        let score = GameStats.highScores[el].score;
-        console.log(name,score)
+//append rows to table
+const appendRowsToTable = () => {
+    clearHighScoresTable();
+    const highScoreTable = document.querySelector('.high-score-table');
+
+    const sortedData = sortByLeastTurns();
+
+    let titleRow = document.createElement('tr');
+    titleRow.classList.add('table-row');
+
+    let rankCellTitle = document.createElement('td');
+    rankCellTitle.classList.add('table-rank');
+    rankCellTitle.textContent = 'Rank';
+
+    let nameCellTitle = document.createElement('td');
+    nameCellTitle.classList.add('table-heading');
+    nameCellTitle.textContent = 'Name';
+
+    let scoreCellTitle = document.createElement('td');
+    scoreCellTitle.classList.add('table-heading');
+    scoreCellTitle.textContent = 'Turns';
+
+    titleRow.appendChild(rankCellTitle);
+    titleRow.appendChild(nameCellTitle);
+    titleRow.appendChild(scoreCellTitle);
+
+    highScoreTable.appendChild(titleRow);
+
+    for(let i=0; i<sortedData.length; i++) {
+        let name = sortedData[i][0];
+        let score = sortedData[i][1];
 
         let newRow = document.createElement('tr');
+        newRow.classList.add('table-row');
 
         let rankCell = document.createElement('td');
         rankCell.classList.add('table-cell-rank');
-        rankCell.textContent = Number(el) + 1;
+        rankCell.textContent = Number(i) + 1;
 
         let nameCell = document.createElement('td');
         nameCell.classList.add('table-cell');
@@ -281,11 +324,12 @@ const appendScoresToTable = () => {
 
         highScoreTable.append(newRow);
     }
+    GameStats.highScores = [];
 }
 
-// sort scores by least 
-const sortByLeastTurns = () => {
-    
+// append header row to table
+const appendHeaderRow = () => {
+
 }
 
 // hide main menu 
@@ -293,19 +337,105 @@ const hideMainMenu = ()=> {
     const appTitle = document.querySelector('.app-title');
     const startButton = document.querySelector('.start-game-button');
     const highScoreButton = document.querySelector('.high-score-button');
-
+    
     appTitle.style.display = "none";
     startButton.style.display = "none";
     highScoreButton.style.display = "none";
+    
+    backToMainMenuButton.style.display = "block";
 }
 
 // restore main menu
-const restoreMainMenu = () => {
+const viewMainMenu = () => {
+    const container = document.querySelector('.container');
     const appTitle = document.querySelector('.app-title');
     const startButton = document.querySelector('.start-game-button');
     const highScoreButton = document.querySelector('.high-score-button');
-
+    
     appTitle.style.display = "flex";
     startButton.style.display = "flex";
     highScoreButton.style.display = "flex";
+    container.style.display = "none";
+    
+    backToMainMenuButton.style.display = "none";
 }
+
+// hide highScores
+const hideHighScores = () => {
+    const highScoreTableContainer = document.querySelector('.high-score-table-container');
+    const highScoreTable = document.querySelector('.high-score-table');
+
+    highScoreTableContainer.style.display = "none";
+    highScoreTable.style.display = "none";
+}
+
+// check game is complete
+const checkGameIsComplete = () => {
+    if(GameStats.cardsRemaining === 0) {
+        const name = prompt('What is your name?');
+        const score = GameStats.numberOfTurns;
+        console.log(`${name} took ${score} turns to finish the game!`);
+        updateHighScores(name,score);
+        restoreGameStatsToDefault();
+    }
+    hideMainMenu();
+}
+
+// update high scores after a player wins
+const updateHighScores = (name,score) => {
+    window.localStorage.setItem(name,score);
+    removeOldCards();
+    hideMetrics();
+}
+
+// hide metrics once a game is complete
+const hideMetrics = () => {
+    const metricsContainer = document.querySelector('.metrics-container');
+    const highScoreButton = document.querySelector('.high-score-button');
+
+    highScoreButton.style.display = "none";
+    metricsContainer.style.display = "none";
+
+    viewHighScores();
+}
+
+//restore GameStats to default
+const restoreGameStatsToDefault = () => {
+    GameStats.selectedCards = [];
+    GameStats.selectedCardsIndex = [];
+    GameStats.removedCards = [];
+    GameStats.numberOfTurns = 0;
+    GameStats.cardsRemaining = 16;
+    GameStats.highScores = [];
+}
+
+//clear highScores Table
+const clearHighScoresTable = () => {
+    const highScoreTable = document.querySelector('.high-score-table');
+    while(highScoreTable.hasChildNodes()) {
+        highScoreTable.removeChild(highScoreTable.firstChild);
+    }
+}
+
+// sort by least amount of turns used
+const sortByLeastTurns = () => {
+    let leastTurns = Infinity;
+    const obj = {}
+    for(let i=0; i<localStorage.length; i++) {
+        let name = window.localStorage.key(i);
+        let score = window.localStorage.getItem(localStorage.key(i));
+        
+        obj[name] = score;
+    }
+    const sortable = [];
+    for(key in obj) {
+        if(obj[key] < leastTurns) {
+            sortable.push([key, obj[key]]);
+        }
+    }
+    const result = sortable.sort(function(a, b) {
+        return a[1] - b[1];
+    });
+    return result;
+}
+
