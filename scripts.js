@@ -7,6 +7,8 @@ const cardsRemainingCounter = document.querySelector('.cards-remaining-counter')
 const theme = new Audio('./audio/theme.mp3');
 theme.loop = true;
 
+
+
 const GameStats = {
     selectedCards: [],
     selectedCardsIndex: [],
@@ -439,3 +441,31 @@ const sortByLeastTurns = () => {
     return result;
 }
 
+// randomLensFlare
+const randomLensFlare = (time) => {
+    const lensFlare = document.createElement('div');
+    lensFlare.classList.add('lens-flare')
+    const wrapper = document.querySelector('.wrapper');
+
+    lensFlare.style.right = Math.random() * (90 - 10) + 10 + "%";
+    lensFlare.style.bottom = Math.random() * (90 - 70) + 70 + "%";
+    
+    wrapper.appendChild(lensFlare);
+
+    setInterval(()=>{
+        let randomRight = Math.random() * (90 - 10) + 10;
+        let randomBottom = Math.random() * (90 - 70) + 70;
+
+        let bottomVal = randomBottom + "%";
+        let rightVal = randomRight + "%";
+
+        lensFlare.style.right = rightVal;
+        lensFlare.style.bottom = bottomVal;
+
+    }, time);
+}
+
+randomLensFlare(200);
+andomLensFlare(300);
+randomLensFlare(300);
+andomLensFlare(300);
