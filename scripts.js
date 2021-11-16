@@ -7,8 +7,6 @@ const cardsRemainingCounter = document.querySelector('.cards-remaining-counter')
 const theme = new Audio('./audio/theme.mp3');
 theme.loop = true;
 
-
-
 const GameStats = {
     selectedCards: [],
     selectedCardsIndex: [],
@@ -466,6 +464,6 @@ const randomLensFlare = (time) => {
 }
 
 randomLensFlare(200);
-andomLensFlare(300);
 randomLensFlare(300);
-andomLensFlare(300);
+randomLensFlare(300);
+randomLensFlare(300);
