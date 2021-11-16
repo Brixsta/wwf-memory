@@ -135,7 +135,6 @@ html {
   top: 2%;
   border-radius: 43px;
   background-color: white;
-  /* opacity: 0.2; */
   opacity: 0.2;
 }
 
@@ -441,7 +440,6 @@ html {
   flex-direction: column;
   overflow-y: auto;
   max-height: 21rem;
-  min-height: 21rem;
   box-shadow: 5px 5px 10px rgba(0, 0, 0, 1);
   z-index: 10;
 }
