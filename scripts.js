@@ -1,4 +1,6 @@
 const startButton = document.querySelector('.start-game-button');
+const refreshButtonContainer = document.querySelector('.refresh-button-container');
+const homeButtonContainer = document.querySelector('.home-button-container');
 const backToMainMenuButton = document.querySelector('.back-to-main-menu-button');
 const highScoreButton = document.querySelector('.high-score-button');
 const board = document.querySelector('.board');
@@ -18,7 +20,15 @@ const GameStats = {
 
 // start button initiates the game
 startButton.addEventListener('click', ()=>{
+    const metrics = document.querySelector('.metrics')
+
+    refreshButtonContainer.style.display = "block";
+    homeButtonContainer.style.display = "block";
+
     theme.play();
+    // metrics.appendChild(refreshButtonContainer);
+    // metrics.appendChild(homeButtonContainer);
+
     hideMainMenu();
     hideHighScores();
     populateBoard();
@@ -30,6 +40,16 @@ highScoreButton.addEventListener('click',()=>{
     hideMainMenu();
     viewHighScores();
 });
+
+// instantly restart the game
+refreshButtonContainer.addEventListener('click', ()=>{
+   instantRestart();
+})
+
+// go back to the main menu from inside the game
+homeButtonContainer.addEventListener('click', ()=>{
+    returnToMainMenuFromGame();
+})
 
 // view mainMenu
 backToMainMenuButton.addEventListener('click',()=>{
@@ -235,7 +255,7 @@ const removeOldCards = () => {
 
 // play random audio clip
 const playRandomAudioClip = () => {
-    let randomNum = Math.floor(Math.random() * 14);
+    let randomNum = Math.floor(Math.random() * 15);
     const music = new Audio(`./audio/${randomNum}.mp3`);
     music.play();
 }
@@ -461,6 +481,36 @@ const randomLensFlare = (time) => {
         lensFlare.style.bottom = bottomVal;
 
     }, time);
+}
+
+// restart a new game instantly
+const instantRestart = () => {
+    const metrics = document.querySelector('metrics');
+    restoreGameStatsToDefault();
+    removeOldCards();
+    populateBoard();
+
+    metrics.appendChild(refreshButtonContainer);
+    metrics.appendChild(homeButtonContainer);
+}
+
+// return to main menu inside the game
+const returnToMainMenuFromGame = () => {
+    const metricsContainer = document.querySelector('.metrics-container');
+    const highScoreButton = document.querySelector('.high-score-button');
+    const refreshButtonContainer = document.querySelector('.refresh-button-container');
+    const homeButtonContainer = document.querySelector('.home-button-container');
+
+    highScoreButton.style.display = "none";
+    metricsContainer.style.display = "none";
+
+    refreshButtonContainer.style.display = "none";
+    homeButtonContainer.style.display = "none";
+
+    restoreGameStatsToDefault();
+    removeOldCards();
+    viewMainMenu();
+
 }
 
 randomLensFlare(200);
