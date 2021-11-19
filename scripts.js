@@ -59,8 +59,8 @@ backToMainMenuButton.addEventListener('click',()=>{
 
 // populate board
 const populateBoard = () => {
-    const metricsContainer = document.querySelector('.metrics-container');
     const metrics = document.querySelector('.metrics');
+    const metricsContainer = document.querySelector('.metrics-container');
     const container = document.querySelector('.container');
 
     metrics.style.display = "flex";
@@ -394,7 +394,7 @@ const checkGameIsComplete = () => {
     if(GameStats.cardsRemaining === 0) {
         const name = prompt('What is your name?');
         const score = GameStats.numberOfTurns;
-        console.log(`${name} took ${score} turns to finish the game!`);
+
         updateHighScores(name,score);
         restoreGameStatsToDefault();
     }
@@ -410,11 +410,13 @@ const updateHighScores = (name,score) => {
 
 // hide metrics once a game is complete
 const hideMetrics = () => {
+    const metrics = document.querySelector('.metrics');
     const metricsContainer = document.querySelector('.metrics-container');
     const highScoreButton = document.querySelector('.high-score-button');
 
     highScoreButton.style.display = "none";
     metricsContainer.style.display = "none";
+    metrics.style.display = "none";
 
     viewHighScores();
 }
