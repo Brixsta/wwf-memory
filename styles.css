@@ -817,20 +817,6 @@ html {
     top: -0.8rem;
   }
 
-  .refresh-button,
-  .home-button {
-  }
-
-  .refresh-button {
-  }
-
-  .home-button {
-  }
-
-  .fa-home,
-  .fa-retweet {
-  }
-
   .metrics-container {
     width: 19rem;
   }
@@ -843,10 +829,6 @@ html {
     padding: 0.2rem 0.5rem;
     width: 1rem;
     font-size: 0.8rem;
-  }
-
-  .cards-remaining-counter,
-  .turn-counter {
   }
 }
 
@@ -867,12 +849,6 @@ html {
     top: -0.65rem;
   }
 
-  .home-button::before {
-    height: 2rem;
-    width: 2.5rem;
-    top: -6.3rem;
-  }
-
   .refresh-button,
   .home-button {
     width: 0.2rem;
@@ -881,27 +857,31 @@ html {
   }
 
   .refresh-button {
-    margin-left: 2.5rem;
-    margin-top: -5.8rem;
+    margin: 0;
+    left: auto;
+    top: auto;
   }
 
   .home-button {
-    margin-right: 2.5rem;
-    margin-top: -5.8rem;
+    margin: 0;
+    right: auto;
+    top: auto;
+  }
+
+  .refresh-button-container {
+    /* background-color: yellow; */
+    transform: translate(50%, 0);
+    left: 27%;
+  }
+
+  .home-button-container {
+    /* background-color: orangered; */
+    transform: translate(50%, 0);
+    right: 40%;
   }
 
   .metrics-container {
     padding: 0.3rem;
-  }
-
-  .metrics-container label {
-  }
-
-  .metrics-container input {
-  }
-
-  .cards-remaining-counter,
-  .turn-counter {
   }
 }
 
@@ -912,34 +892,5 @@ html {
 
   .container {
     width: 20rem;
-  }
-
-  .refresh-button::before {
-  }
-
-  .home-button::before {
-  }
-
-  .refresh-button,
-  .home-button {
-  }
-
-  .refresh-button {
-  }
-
-  .home-button {
-  }
-
-  .metrics-container {
-  }
-
-  .metrics-container label {
-  }
-
-  .metrics-container input {
-  }
-
-  .cards-remaining-counter,
-  .turn-counter {
   }
 }
