@@ -718,6 +718,7 @@ html {
   .container {
     width: 30rem;
     height: 40rem;
+    margin-top: -4rem;
   }
 
   .metrics {
@@ -792,6 +793,7 @@ html {
   .container {
     width: 25rem;
     height: 35rem;
+    margin-top: -10rem;
   }
 
   .sparkle-one,
