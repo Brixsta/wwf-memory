@@ -514,13 +514,13 @@ html {
 .home-button::before {
   content: "";
   position: absolute;
-  height: 100%;
-  width: 100%;
+  height: 5rem;
+  width: 5rem;
   background-color: white;
-  top: -25px;
   border-radius: 50%;
   opacity: 0.2;
   transform: scale(0.7, 0.4);
+  top: -23px;
 }
 
 .refresh-button-container {
@@ -543,8 +543,6 @@ html {
 }
 
 .home-button {
-  right: -125px;
-  top: 41.5%;
   font-size: 2rem;
   height: 2rem;
   width: 2rem;
@@ -715,182 +713,171 @@ html {
 }
 
 /* MEDIA QUERIES */
-@media only screen and (max-width: 950px) {
+
+@media only screen and (max-width: 640px) {
+  .container {
+    width: 30rem;
+    height: 50rem;
+  }
+
+  .high-score-table-container {
+    width: 20rem;
+  }
+
+  .high-score-table-title {
+    font-size: 2.5rem;
+  }
+
+  .sparkle-one {
+    left: 6rem;
+    bottom: 2.8rem;
+  }
+
+  .sparkle-two {
+    left: 1rem;
+    bottom: -0.5rem;
+  }
+
+  .app-title {
+    width: 25rem;
+    font-size: 3rem;
+  }
+
+  .logo {
+    height: 4rem;
+    width: 7rem;
+    margin-left: -2rem;
+  }
+
   .card {
     height: 8rem;
     width: 5.5rem;
   }
 
-  .container {
-    width: 30rem;
-  }
-
-  .refresh-button,
-  .home-button {
-    height: 1rem;
-    width: 1rem;
-    margin-bottom: 0.6rem;
-  }
-
-  .refresh-button {
-    margin-left: 1rem;
-  }
-
-  .home-button {
-    margin-right: 1rem;
-  }
-
-  .home-button::before,
-  .refresh-button::before {
-    width: 4rem;
-    height: 4rem;
-    top: -1rem;
-  }
-
-  .metrics-container {
-    height: 2rem;
-    padding: 1rem;
-  }
-
-  .cards-remaining-counter,
-  .turn-counter {
-  }
-}
-
-@media only screen and (max-width: 640px) {
-  .card {
-  }
-
-  .container {
-  }
-
-  .refresh-button,
-  .home-button {
-    height: 0.3rem;
-    width: 0.3rem;
-  }
-
-  .home-button::before {
-  }
-
-  .refresh-button {
-    margin-left: 1.7rem;
-    margin-top: 0.1rem;
-  }
-
-  .home-button {
-    margin-right: 1.7rem;
-    margin-top: 0.1rem;
-  }
-
-  .fa-home,
-  .fa-retweet {
-    font-size: 1.3rem;
-  }
-
-  .metrics-container {
-    padding: 0.5rem;
-  }
-
-  .metrics-container input {
-    padding: 0.3rem;
-  }
-}
-
-@media only screen and (max-width: 590px) {
-  .card {
-    height: 9rem;
-    width: 6rem;
-    margin: 0.5rem;
-  }
-
-  .container {
-    width: 30rem;
-    padding: 0.2rem;
-    height: 45rem;
-  }
-
-  .home-button::before,
-  .refresh-button::before {
-    height: 3rem;
-    width: 3rem;
-    top: -0.8rem;
-  }
-
-  .metrics-container {
-    width: 19rem;
-  }
-
-  .metrics-container label {
-    font-size: 0.8rem;
-  }
-
-  .metrics-container input {
-    padding: 0.2rem 0.5rem;
-    width: 1rem;
-    font-size: 0.8rem;
-  }
-}
-
-@media only screen and (max-width: 520px) {
-  .card {
-    height: 7rem;
-    width: 4.5rem;
-  }
-
-  .container {
-    width: 25rem;
-    height: 36rem;
-  }
-
-  .refresh-button::before {
-    height: 2rem;
-    width: 2.5rem;
-    top: -0.65rem;
-  }
-
-  .refresh-button,
-  .home-button {
-    width: 0.2rem;
-    height: 0.2rem;
-    padding: 1.2rem;
-  }
-
-  .refresh-button {
-    margin: 0;
-    left: auto;
-    top: auto;
-  }
-
-  .home-button {
-    margin: 0;
-    right: auto;
-    top: auto;
-  }
-
-  .refresh-button-container {
-    /* background-color: yellow; */
-    transform: translate(50%, 0);
-    left: 27%;
+  .metrics {
+    margin-bottom: 2rem;
   }
 
   .home-button-container {
-    /* background-color: orangered; */
-    transform: translate(50%, 0);
-    right: 40%;
+    top: 6.6rem;
+    left: 50%;
+    right: auto;
+    margin-left: 0.25rem;
   }
 
-  .metrics-container {
-    padding: 0.3rem;
+  .refresh-button-container {
+    top: 6.6rem;
+    right: 50%;
+    left: auto;
+    margin-right: 0.25rem;
+  }
+
+  .home-button {
+    height: 1rem;
+    width: 1rem;
+  }
+
+  .refresh-button {
+    height: 1rem;
+    width: 1rem;
+  }
+
+  .refresh-button::before {
+    top: -24px;
   }
 }
 
-@media only screen and (max-width: 495px) {
+@media only screen and (max-width: 510px) {
+  .container {
+    width: 25rem;
+    height: 35rem;
+  }
+
+  .sparkle-one,
+  .sparkle-two {
+    height: 3rem;
+    width: 3rem;
+  }
+
+  .sparkle-one {
+    left: 5.4rem;
+    bottom: 2.3rem;
+  }
+
+  .sparkle-two {
+    left: 1.6rem;
+    bottom: -0.2rem;
+  }
+
   .card {
+    height: 6rem;
     width: 4rem;
   }
 
+  .metrics-container {
+    width: 22rem;
+  }
+
+  .metrics-container input {
+    padding: 0.25rem;
+  }
+
+  .metrics-container label {
+    font-size: 1rem;
+  }
+
+  .metrics {
+    margin-bottom: 4.5rem;
+  }
+
+  .refresh-button-container,
+  .home-button-container {
+    margin-top: -0.4rem;
+  }
+}
+
+@media only screen and (max-width: 430px) {
+  .app-title {
+    width: 20rem;
+    font-size: 2rem;
+  }
+
+  .logo {
+    width: 5rem;
+    height: 3rem;
+  }
+}
+
+@media only screen and (max-width: 410px) {
   .container {
     width: 20rem;
+    height: 30rem;
+  }
+
+  .card {
+    height: 5rem;
+    width: 3rem;
+  }
+
+  .metrics-container {
+    width: 18rem;
+  }
+
+  .metrics-container label {
+    font-size: 0.7rem;
+  }
+
+  .metrics-container input {
+    width: 1.5rem;
+  }
+
+  .metrics {
+    margin-bottom: 0rem;
+  }
+}
+
+@media only screen and (max-width: 360px) {
+  .high-score-table {
+    width: 15rem;
   }
 }

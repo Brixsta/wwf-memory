@@ -1,68 +1,68 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>WWF Memory</title>
-    <link rel="stylesheet" href="fontawesome-free-6.0.0-beta2-web/css/all.min.css">
-    <link type="text/css" rel="stylesheet" href="styles.css">
-</head>
-<body>
+    <link
+      rel="stylesheet"
+      href="fontawesome-free-6.0.0-beta2-web/css/all.min.css"
+    />
+    <link type="text/css" rel="stylesheet" href="styles.css" />
+    <link rel="icon" href="./images/logo.png" />
+  </head>
+  <body>
     <div class="wrapper">
-        <div class="high-score-table-container">
-            <div class="high-score-table-title">High Scores</div>
-            <div class="high-score-table-overflow">
-                
-                <table class="high-score-table">
-                    <tr>
-                    <th class="table-rank">Rank</th>
-                    <th class="table-heading">Name</th>
-                    <th class="table-heading">Turns</th>
-                    </tr>
-                </table>
-            </div>
-            <button class="back-to-main-menu-button">Back to Main Menu</button>
+      <div class="high-score-table-container">
+        <div class="high-score-table-title">High Scores</div>
+        <div class="high-score-table-overflow">
+          <table class="high-score-table">
+            <tr>
+              <th class="table-rank">Rank</th>
+              <th class="table-heading">Name</th>
+              <th class="table-heading">Turns</th>
+            </tr>
+          </table>
         </div>
-        
-        <div class="app-title"><span class="logo">
-            <div class="sparkle-one"></div>
-            <div class="sparkle-two"></div>
-        </span> Memory</div>
-        <button class="start-game-button">Start New Game</button>
-        <button class="high-score-button">High Scores</button>
-        
-        <div class="container">
-            
-            <div class="board">
-            </div>
-        </div>
-        <div class="metrics">
-            <div class="refresh-button-container">
-                <div class="refresh-button">
-                    <i class="fa fa-retweet" aria-hidden="true"></i>
-                </div>
-            </div>
-            <div class="home-button-container">
-                <div class="home-button">
-                    <i class="fas fa-home"></i>
-                </div>
-            </div>
+        <button class="back-to-main-menu-button">Back to Main Menu</button>
+      </div>
 
-            <div class="metrics-container">
-                <form>
-                    <label class="turn-counter-title">Turns</label>
-                    <input 
-                    class="turn-counter"
-                    type="text">
-                    <label class="cards-remaining-title">Cards Remaining</label>
-                    <input 
-                    class="cards-remaining-counter"
-                    type="text">
-                </form>
-            </div>
+      <div class="app-title">
+        <span class="logo">
+          <div class="sparkle-one"></div>
+          <div class="sparkle-two"></div>
+        </span>
+        Memory
+      </div>
+      <button class="start-game-button">Start New Game</button>
+      <button class="high-score-button">High Scores</button>
+
+      <div class="container">
+        <div class="board"></div>
+      </div>
+      <div class="metrics">
+        <div class="refresh-button-container">
+          <div class="refresh-button">
+            <i class="fa fa-retweet" aria-hidden="true"></i>
+          </div>
         </div>
+        <div class="home-button-container">
+          <div class="home-button">
+            <i class="fas fa-home"></i>
+          </div>
+        </div>
+
+        <div class="metrics-container">
+          <form>
+            <label class="turn-counter-title">Turns</label>
+            <input class="turn-counter" type="text" />
+            <label class="cards-remaining-title">Cards Remaining</label>
+            <input class="cards-remaining-counter" type="text" />
+          </form>
+        </div>
+      </div>
     </div>
     <script src="scripts.js"></script>
-</body>
+  </body>
 </html>
