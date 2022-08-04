@@ -1,5 +1,7 @@
 ************ WWF Memory Game ************
 
+https://brixsta.github.io/wwf-memory/
+
 -Made using Vanilla Javascript and CSS
 
 -Cards are assigned a random Number
