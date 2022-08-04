@@ -1,6 +1,6 @@
-# H1 WWF Memory Game
+# WWF Memory Game
 
-[title](https://brixsta.github.io/wwf-memory/)
+[Play the Game](https://brixsta.github.io/wwf-memory/)
 
 - Made using Vanilla Javascript and CSS
 
